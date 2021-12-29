@@ -71,6 +71,13 @@ public class SignupActivity extends AppCompatActivity {
             usernameEditText.setError(getString(R.string.no_space_allowed));
             isOk = false;
         }
+        if (isOk) {
+            DbHelper dbHelper = new DbHelper(this);
+            if (dbHelper.isUsernameTaken(username)) {
+                usernameEditText.setError(getString(R.string.username_already_taken));
+                isOk = false;
+            }
+        }
         if (password.length() < 4) {
             passwordEditText.setError(getString(R.string.min_length_4));
             isOk = false;

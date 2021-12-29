@@ -61,4 +61,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         return false;
     }
+
+    public boolean isUsernameTaken(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        boolean result = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE USERNAME = ?", new String[]{username}).getCount() > 0;
+        db.close();
+        return result;
+    }
 }
