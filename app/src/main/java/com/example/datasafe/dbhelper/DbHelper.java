@@ -49,16 +49,16 @@ public class DbHelper extends SQLiteOpenHelper {
     public boolean verifyUser(User user) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER, null);
-        db.close();
         if (c.moveToFirst()) {
             do {
-                if (user.getUsername().equals(c.getString(2)) && user.getPassword().equals(c.getString(3))) {
+                if (user.getUsername().equals(c.getString(1)) && user.getPassword().equals(c.getString(2))) {
                     c.close();
                     return true;
                 }
             } while (c.moveToNext());
         }
         c.close();
+        db.close();
         return false;
     }
 }
