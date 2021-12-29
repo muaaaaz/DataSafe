@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DataSafe</string>
+    <string name="data_safe">Data Safe</string>
+    <string name="logo">Logo</string>
 </resources>
