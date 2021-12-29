@@ -7,4 +7,11 @@
     <string name="login">Login</string>
     <string name="i_agree_to_terms_of_services">I agree to Terms of Services.</string>
     <string name="signup">Sign up</string>
+    <string name="create_account">Create Account</string>
+    <string name="min_length_3">Min length is 3.</string>
+    <string name="min_length_4">Min length is 4.</string>
+    <string name="first_char_must_be_alpha">First char must be alpha.</string>
+    <string name="must_agree">You must agree to our TOS.</string>
+    <string name="account_created">Account created.</string>
+    <string name="no_space_allowed">No space in text allowed.</string>
 </resources>
