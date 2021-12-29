@@ -15,4 +15,6 @@
     <string name="account_created">Account created.</string>
     <string name="no_space_allowed">No space in text allowed.</string>
     <string name="username_already_taken">Username already taken.</string>
+    <string name="welcome">Welcome</string>
+    <string name="incorrect_username_or_password">Incorrect username or password.</string>
 </resources>
