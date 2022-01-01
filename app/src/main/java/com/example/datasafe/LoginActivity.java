@@ -30,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
             if (!validateEntries()) return;
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
             UserDbHelper userDbHelper = new UserDbHelper(this);
-            if (userDbHelper.verifyUser(user)) {
+            user = userDbHelper.verifyUser(user);
+            if (user != null) {
                 Intent mainIntent = new Intent(this, MainActivity.class);
                 mainIntent.putExtra("USER", user);
                 startActivity(mainIntent);

@@ -46,20 +46,21 @@ public class UserDbHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_USER, "ID = ?", new String[]{String.valueOf(user.getId())}) > 0;
     }
 
-    public boolean verifyUser(User user) {
+    public User verifyUser(User user) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER, null);
         if (c.moveToFirst()) {
             do {
                 if (user.getUsername().equals(c.getString(1)) && user.getPassword().equals(c.getString(2))) {
+                    user.setId(c.getInt(0));
                     c.close();
-                    return true;
+                    return user;
                 }
             } while (c.moveToNext());
         }
         c.close();
         db.close();
-        return false;
+        return null;
     }
 
     public boolean isUsernameTaken(String username) {
