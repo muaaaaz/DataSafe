@@ -1,5 +1,6 @@
 package com.example.datasafe.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -9,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.datasafe.R;
 import com.example.datasafe.adapter.CategoryAdapter;
 import com.example.datasafe.dbhelper.CategoryDbHelper;
-import com.example.datasafe.models.Category;
 import com.example.datasafe.models.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,17 +30,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         categoryDbHelper = new CategoryDbHelper(this);
-        // TODO: 01/01/2022 Remove following section
-        {
-            categoryDbHelper.addCategory(new Category(user.getId(), "Password"));
-            categoryDbHelper.addCategory(new Category(user.getId(), "Notes"));
-        }
 
         // display categories
         listView = findViewById(R.id.listView_main);
         listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId())));
 
         addBtn = findViewById(R.id.btn_add_main);
-        // TODO: 01/01/2022 Add new category
+        addBtn.setOnClickListener(v -> {
+            Intent addCategoryIntent = new Intent(this, AddCategoryActivity.class);
+            addCategoryIntent.putExtra("USER", user);
+            startActivity(addCategoryIntent);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId())));
     }
 }

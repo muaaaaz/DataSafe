@@ -18,4 +18,5 @@
     <string name="welcome">Welcome</string>
     <string name="incorrect_username_or_password">Incorrect username or password.</string>
     <string name="add_button">Add button</string>
+    <string name="category_added">Category added.</string>
 </resources>

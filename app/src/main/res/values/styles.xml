@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.DataSafe.Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_rounded_filled</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+    <style name="Theme.DataSafe.ButtonPrimary" parent="Theme.DataSafe.Button">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.DataSafe.ButtonCancel" parent="Theme.DataSafe.Button">
+        <item name="android:backgroundTint">?colorControlHighlight</item>
+    </style>
+</resources>
