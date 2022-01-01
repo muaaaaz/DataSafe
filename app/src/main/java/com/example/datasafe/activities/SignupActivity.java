@@ -1,4 +1,4 @@
-package com.example.datasafe;
+package com.example.datasafe.activities;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.UserDbHelper;
 import com.example.datasafe.models.User;
 

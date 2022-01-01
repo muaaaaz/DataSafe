@@ -1,4 +1,4 @@
-package com.example.datasafe;
+package com.example.datasafe.activities;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.datasafe.R;
 import com.example.datasafe.adapter.CategoryAdapter;
 import com.example.datasafe.dbhelper.CategoryDbHelper;
 import com.example.datasafe.models.Category;

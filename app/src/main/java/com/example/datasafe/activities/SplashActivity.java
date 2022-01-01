@@ -1,9 +1,11 @@
-package com.example.datasafe;
+package com.example.datasafe.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.datasafe.R;
 
 public class SplashActivity extends AppCompatActivity {
 
