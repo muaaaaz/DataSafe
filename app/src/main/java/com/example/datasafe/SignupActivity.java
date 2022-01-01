@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.datasafe.dbhelper.DbHelper;
+import com.example.datasafe.dbhelper.UserDbHelper;
 import com.example.datasafe.models.User;
 
 public class SignupActivity extends AppCompatActivity {
@@ -34,8 +34,8 @@ public class SignupActivity extends AppCompatActivity {
                 return;
             }
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
-            DbHelper dbHelper = new DbHelper(this);
-            if (dbHelper.addUser(user)) {
+            UserDbHelper userDbHelper = new UserDbHelper(this);
+            if (userDbHelper.addUser(user)) {
                 Toast.makeText(this, R.string.account_created, Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -72,8 +72,8 @@ public class SignupActivity extends AppCompatActivity {
             isOk = false;
         }
         if (isOk) {
-            DbHelper dbHelper = new DbHelper(this);
-            if (dbHelper.isUsernameTaken(username)) {
+            UserDbHelper userDbHelper = new UserDbHelper(this);
+            if (userDbHelper.isUsernameTaken(username)) {
                 usernameEditText.setError(getString(R.string.username_already_taken));
                 isOk = false;
             }

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.datasafe.dbhelper.DbHelper;
+import com.example.datasafe.dbhelper.UserDbHelper;
 import com.example.datasafe.models.User;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -29,8 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(v -> {
             if (!validateEntries()) return;
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
-            DbHelper dbHelper = new DbHelper(this);
-            if (dbHelper.verifyUser(user)) {
+            UserDbHelper userDbHelper = new UserDbHelper(this);
+            if (userDbHelper.verifyUser(user)) {
                 Intent mainIntent = new Intent(this, MainActivity.class);
                 mainIntent.putExtra("USER", user);
                 startActivity(mainIntent);

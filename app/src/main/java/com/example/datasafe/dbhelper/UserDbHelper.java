@@ -10,14 +10,14 @@ import androidx.annotation.Nullable;
 
 import com.example.datasafe.models.User;
 
-public class DbHelper extends SQLiteOpenHelper {
+public class UserDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "DATASAFE.db";
     public static final String TABLE_USER = "USER";
     public static final String TABLE_USER_C1 = "ID";
     public static final String TABLE_USER_C2 = "USERNAME";
     public static final String TABLE_USER_C3 = "PASSWORD";
 
-    public DbHelper(@Nullable Context context) {
+    public UserDbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
