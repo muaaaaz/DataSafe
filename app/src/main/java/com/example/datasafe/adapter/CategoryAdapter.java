@@ -54,7 +54,7 @@ public class CategoryAdapter extends BaseAdapter {
 
         // TODO: 01/01/2022 Set on click to launch category details
         View finalConvertView = convertView;
-        convertView.setOnClickListener(v -> {
+        convertView.setOnLongClickListener(v -> {
             Context parentContext = parent.getContext();
             PopupMenu popupMenu = new PopupMenu(parentContext, finalConvertView, Gravity.END);
             popupMenu.inflate(R.menu.menu_category_item);
@@ -89,6 +89,7 @@ public class CategoryAdapter extends BaseAdapter {
                 }
             });
             popupMenu.show();
+            return true;
         });
 
         return convertView;

@@ -38,6 +38,7 @@ public class EditCategoryActivity extends AppCompatActivity {
         });
         editBtn.setOnClickListener(v -> {
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
+            category.setName(name.getText().toString().trim());
             categoryDbHelper.updateCategory(category);
             Toast.makeText(this, getString(R.string.category_updated) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
             finish();
