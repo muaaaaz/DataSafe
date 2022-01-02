@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataSafe">
         <activity
+            android:name=".activities.secretData.ViewSecretDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.secretData.EditSecretDataActivity"
             android:exported="false" />
         <activity

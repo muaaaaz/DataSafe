@@ -30,4 +30,7 @@
     <string name="secret_added">Secret Added.</string>
     <string name="secret_updated">Secret updated.</string>
     <string name="secret_deleted">Secret deleted.</string>
+    <string name="click_button_to_view">Click View button to view data.</string>
+    <string name="hide">Hide</string>
+    <string name="view">View</string>
 </resources>

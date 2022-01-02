@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.datasafe.R;
 import com.example.datasafe.activities.secretData.EditSecretDataActivity;
+import com.example.datasafe.activities.secretData.ViewSecretDataActivity;
 import com.example.datasafe.dbhelper.SecretDataDbHelper;
 import com.example.datasafe.models.Category;
 import com.example.datasafe.models.SecretData;
@@ -54,7 +55,11 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
         holder.name.setText(data.getTitle());
 
         Context context = holder.itemView.getContext();
-        // TODO: 02/01/2022 SetOnClickListener
+        holder.itemView.setOnClickListener(v -> {
+            Intent viewIntent = new Intent(context, ViewSecretDataActivity.class);
+            viewIntent.putExtra("SECRET_DATA", data);
+            context.startActivity(viewIntent);
+        });
         holder.itemView.setOnLongClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(context, v, Gravity.END);
             popupMenu.inflate(R.menu.menu_category_item);
