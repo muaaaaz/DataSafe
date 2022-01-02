@@ -4,13 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/screenPadding"
     tools:context=".activities.AddCategoryActivity">
+
+    <TextView
+        style="@style/Theme.DataSafe.TitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_category" />
 
     <EditText
         android:id="@+id/text_name_add_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="@string/name"
         android:inputType="text" />
 
     <LinearLayout
@@ -25,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/btn_add_add_category"
@@ -34,6 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Add" />
+            android:text="@string/add" />
     </LinearLayout>
 </LinearLayout>

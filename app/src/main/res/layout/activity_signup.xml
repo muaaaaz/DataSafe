@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/screenPadding"
     tools:context=".activities.SignupActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/ic_safe" />
 
@@ -36,7 +38,8 @@
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
+        style="@style/Theme.DataSafe.ButtonPrimary"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/signup" />

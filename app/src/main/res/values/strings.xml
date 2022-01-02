@@ -27,10 +27,18 @@
     <string name="category_updated">Category updated.</string>
     <string name="category_deleted">Category deleted.</string>
     <string name="yes">Yes</string>
-    <string name="secret_added">Secret Added.</string>
+    <string name="secret_added">Secret added.</string>
     <string name="secret_updated">Secret updated.</string>
     <string name="secret_deleted">Secret deleted.</string>
-    <string name="click_button_to_view">Click View button to view data.</string>
+    <string name="click_button_to_view">Click \'View\' button to view data.</string>
     <string name="hide">Hide</string>
     <string name="view">View</string>
+    <string name="new_category">New Category</string>
+    <string name="add">Add</string>
+    <string name="new_secret">New Secret</string>
+    <string name="title">Title</string>
+    <string name="data">Data</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="edit_secret">Edit Secret</string>
+    <string name="go_back">Go Back</string>
 </resources>
