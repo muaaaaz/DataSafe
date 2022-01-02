@@ -36,9 +36,7 @@ public class ViewSecretDataActivity extends AppCompatActivity {
         setDataTextView();
 
         cancelBtn.setOnClickListener(v -> finish());
-        viewHideBtn.setOnClickListener(v -> {
-            setDataTextView();
-        });
+        viewHideBtn.setOnClickListener(v -> setDataTextView());
     }
 
     private void setDataTextView() {

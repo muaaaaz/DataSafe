@@ -33,9 +33,7 @@ public class EditCategoryActivity extends AppCompatActivity {
 
         name.setText(category.getName());
 
-        cancelBtn.setOnClickListener(v -> {
-            finish();
-        });
+        cancelBtn.setOnClickListener(v -> finish());
         editBtn.setOnClickListener(v -> {
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
             category.setName(name.getText().toString().trim());

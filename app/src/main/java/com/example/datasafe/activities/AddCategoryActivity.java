@@ -32,9 +32,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         cancelBtn = findViewById(R.id.btn_cancel_add_category);
         addBtn = findViewById(R.id.btn_add_add_category);
 
-        cancelBtn.setOnClickListener(v -> {
-            finish();
-        });
+        cancelBtn.setOnClickListener(v -> finish());
         addBtn.setOnClickListener(v -> {
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
             Category category = new Category(user.getId(), name.getText().toString().trim());

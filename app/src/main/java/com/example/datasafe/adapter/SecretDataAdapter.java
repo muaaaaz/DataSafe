@@ -101,7 +101,7 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
         notifyDataSetChanged();
     }
 
-    class SecretDataViewHolder extends RecyclerView.ViewHolder {
+    static class SecretDataViewHolder extends RecyclerView.ViewHolder {
         TextView name;
 
         public SecretDataViewHolder(@NonNull View itemView) {

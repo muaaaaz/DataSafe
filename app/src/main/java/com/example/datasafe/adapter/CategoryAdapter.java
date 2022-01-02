@@ -99,7 +99,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         notifyDataSetChanged();
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
+    static class CategoryViewHolder extends RecyclerView.ViewHolder {
         TextView name;
 
         public CategoryViewHolder(@NonNull View itemView) {
