@@ -3,9 +3,10 @@ package com.example.datasafe.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.datasafe.R;
 import com.example.datasafe.adapter.CategoryAdapter;
@@ -14,9 +15,10 @@ import com.example.datasafe.models.User;
 
 public class MainActivity extends AppCompatActivity {
     User user;
-    ListView listView;
+    RecyclerView recyclerView;
     ImageButton addBtn;
     CategoryDbHelper categoryDbHelper;
+    CategoryAdapter categoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         categoryDbHelper = new CategoryDbHelper(this);
+        categoryAdapter = new CategoryAdapter(user.getId(), categoryDbHelper);
 
         // display categories
-        listView = findViewById(R.id.listView_main);
-        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId()), categoryDbHelper));
+        recyclerView = findViewById(R.id.recyclerView_main);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(categoryAdapter);
 
         addBtn = findViewById(R.id.btn_add_main);
         addBtn.setOnClickListener(v -> {
@@ -46,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId()), categoryDbHelper));
+        categoryAdapter.update();
     }
 }
