@@ -1,6 +1,8 @@
 package com.example.datasafe.models;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
     int id;
     int uid;
     String name;
