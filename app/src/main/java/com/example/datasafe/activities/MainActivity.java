@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         // display categories
         listView = findViewById(R.id.listView_main);
-        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId())));
+        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId()), categoryDbHelper));
 
         addBtn = findViewById(R.id.btn_add_main);
         addBtn.setOnClickListener(v -> {
@@ -46,6 +46,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId())));
+        listView.setAdapter(new CategoryAdapter(categoryDbHelper.getAllCategories(user.getId()), categoryDbHelper));
     }
 }
