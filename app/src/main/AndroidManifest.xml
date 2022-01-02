@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataSafe">
         <activity
+            android:name=".activities.secretData.EditSecretDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.secretData.AddSecretDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.secretData.MainSecretDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditCategoryActivity"
             android:exported="false" />
         <activity

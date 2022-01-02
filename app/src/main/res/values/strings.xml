@@ -27,4 +27,7 @@
     <string name="category_updated">Category updated.</string>
     <string name="category_deleted">Category deleted.</string>
     <string name="yes">Yes</string>
+    <string name="secret_added">Secret Added.</string>
+    <string name="secret_updated">Secret updated.</string>
+    <string name="secret_deleted">Secret deleted.</string>
 </resources>

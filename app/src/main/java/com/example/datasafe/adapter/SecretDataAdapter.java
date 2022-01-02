@@ -17,47 +17,44 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.datasafe.R;
-import com.example.datasafe.activities.EditCategoryActivity;
-import com.example.datasafe.activities.secretData.MainSecretDataActivity;
-import com.example.datasafe.dbhelper.CategoryDbHelper;
+import com.example.datasafe.activities.secretData.EditSecretDataActivity;
+import com.example.datasafe.dbhelper.SecretDataDbHelper;
 import com.example.datasafe.models.Category;
+import com.example.datasafe.models.SecretData;
 
 import java.util.ArrayList;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
-    CategoryDbHelper categoryDbHelper;
-    int userId;
-    ArrayList<Category> categories;
+public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.SecretDataViewHolder> {
+    SecretDataDbHelper secretDataDbHelper;
+    Category category;
+    ArrayList<SecretData> secretData;
 
-    public CategoryAdapter(int userId, CategoryDbHelper categoryDbHelper) {
-        this.categoryDbHelper = categoryDbHelper;
-        this.userId = userId;
-        this.categories = this.categoryDbHelper.getAllCategories(userId);
+    public SecretDataAdapter(Category category, SecretDataDbHelper secretDataDbHelper) {
+        this.secretDataDbHelper = secretDataDbHelper;
+        this.category = category;
+        this.secretData = this.secretDataDbHelper.getData(category.getUid(), category.getId());
     }
 
     @NonNull
     @Override
-    public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SecretDataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_list_item_category, parent, false);
-        return new CategoryViewHolder(view);
+                .inflate(R.layout.layout_list_item_data, parent, false);
+        return new SecretDataViewHolder(view);
     }
 
     @Override
     public int getItemCount() {
-        return categories.size();
+        return secretData.size();
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        Category category = categories.get(position);
-        holder.name.setText(category.getName());
+    public void onBindViewHolder(@NonNull SecretDataViewHolder holder, int position) {
+        SecretData data = secretData.get(position);
+        holder.name.setText(data.getTitle());
+
         Context context = holder.itemView.getContext();
-        holder.itemView.setOnClickListener(v -> {
-            Intent mi = new Intent(context, MainSecretDataActivity.class);
-            mi.putExtra("CATEGORY", category);
-            context.startActivity(mi);
-        });
+        // TODO: 02/01/2022 SetOnClickListener
         holder.itemView.setOnLongClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(context, v, Gravity.END);
             popupMenu.inflate(R.menu.menu_category_item);
@@ -65,18 +62,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.menuItem_edit_category) {
-                        Intent editIntent = new Intent(context, EditCategoryActivity.class);
-                        editIntent.putExtra("CATEGORY", category);
+                        Intent editIntent = new Intent(context, EditSecretDataActivity.class);
+                        editIntent.putExtra("SECRET_DATA", data);
                         context.startActivity(editIntent);
                     } else if (item.getItemId() == R.id.menuItem_delete_category) {
                         new AlertDialog.Builder(context)
-                                .setTitle(context.getString(R.string.delete) + " \"" + category.getName() + "\"?")
+                                .setTitle(context.getString(R.string.delete) + " \"" + data.getTitle() + "\"?")
                                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        categoryDbHelper.deleteCategory(category);
+                                        secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID);
                                         update();
-                                        Toast.makeText(context, context.getString(R.string.category_deleted) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -95,16 +92,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     public void update() {
-        this.categories = this.categoryDbHelper.getAllCategories(userId);
+        this.secretData = this.secretDataDbHelper.getData(category.getUid(), category.getId());
         notifyDataSetChanged();
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
+    class SecretDataViewHolder extends RecyclerView.ViewHolder {
         TextView name;
 
-        public CategoryViewHolder(@NonNull View itemView) {
+        public SecretDataViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.text_name_list_item_category);
+            name = itemView.findViewById(R.id.text_name_list_item_data);
         }
     }
 }
