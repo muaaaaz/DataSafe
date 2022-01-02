@@ -22,11 +22,16 @@ public abstract class DbHelper extends SQLiteOpenHelper {
         String categoryTableQuery;
         categoryTableQuery = String.format("CREATE TABLE %s(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INTEGER NOT NULL, %s TEXT NOT NULL)", CategoryDbHelper.TABLE_CATEGORY, CategoryDbHelper.C1, CategoryDbHelper.C2, CategoryDbHelper.C3);
         db.execSQL(categoryTableQuery);
+
+        String secretDataTableQuery;
+        secretDataTableQuery = String.format("CREATE TABLE %s(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INTEGER NOT NULL, %s INTEGER NOT NULL, %s TEXT NOT NULL, %s TEXT NOT NULL)", SecretDataDbHelper.TABLE_DATA, SecretDataDbHelper.C1, SecretDataDbHelper.C2, SecretDataDbHelper.C3, SecretDataDbHelper.C4, SecretDataDbHelper.C5);
+        db.execSQL(secretDataTableQuery);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE " + UserDbHelper.TABLE_USER);
         db.execSQL("DROP TABLE " + CategoryDbHelper.TABLE_CATEGORY);
+        db.execSQL("DROP TABLE " + SecretDataDbHelper.TABLE_DATA);
     }
 }
