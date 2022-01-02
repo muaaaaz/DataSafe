@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.DataSafe.Button" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/bg_rounded_filled</item>
+        <item name="android:background">@drawable/bg_rounded_unfilled</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:layout_margin">3dp</item>
     </style>
@@ -13,5 +13,16 @@
 
     <style name="Theme.DataSafe.ButtonCancel" parent="Theme.DataSafe.Button">
         <item name="android:backgroundTint">?colorControlHighlight</item>
+    </style>
+
+    <style name="Theme.DataSafe.TitleTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/bg_rounded_filled</item>
+        <item name="android:fontFamily">@font/roboto_condensed_bold</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
     </style>
 </resources>
