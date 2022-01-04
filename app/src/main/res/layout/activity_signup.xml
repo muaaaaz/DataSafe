@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/screenPadding"
     tools:context=".activities.SignupActivity">
 
     <ImageView
@@ -19,6 +18,7 @@
         android:id="@+id/editText_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
         android:hint="@string/username"
         android:inputType="text"
         android:textAllCaps="false" />
@@ -27,6 +27,7 @@
         android:id="@+id/editText_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
@@ -34,6 +35,7 @@
         android:id="@+id/checkbox_tos_agree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="7dp"
         android:text="@string/i_agree_to_terms_of_services" />
 
     <Button
