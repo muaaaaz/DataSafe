@@ -21,18 +21,6 @@ public class CategoryDbHelper extends DbHelper {
         super(context);
     }
 
-    /*@Override
-    public void onCreate(SQLiteDatabase db) {
-        String categoryTableQuery;
-        categoryTableQuery = String.format("CREATE TABLE %s(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s INTEGER NOT NULL, %s TEXT NOT NULL)", TABLE_CATEGORY, C1, C2, C3);
-        db.execSQL(categoryTableQuery);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE " + TABLE_CATEGORY);
-    }*/
-
     public boolean addCategory(Category category) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -43,8 +31,8 @@ public class CategoryDbHelper extends DbHelper {
 
     public boolean deleteCategory(Category category) {
         SQLiteDatabase db = getWritableDatabase();
-        // TODO: 01/01/2022 Deleting category will also delete its relevant data
-        return db.delete(TABLE_CATEGORY, "ID = ?", new String[]{String.valueOf(category.getId())}) > 0;
+        return db.delete(TABLE_CATEGORY, "ID = ?", new String[]{String.valueOf(category.getId())}) > 0 &&
+                db.delete(SecretDataDbHelper.TABLE_DATA, String.format("%s = ?", SecretDataDbHelper.TYPE_CID), new String[]{String.valueOf(category.getId())}) > 0;
     }
 
     public ArrayList<Category> getAllCategories(int userId) {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -71,12 +72,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                     } else if (item.getItemId() == R.id.menuItem_delete_category) {
                         new AlertDialog.Builder(context)
                                 .setTitle(context.getString(R.string.delete) + " \"" + category.getName() + "\"?")
+                                .setMessage("All related data will be lost.")
                                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        categoryDbHelper.deleteCategory(category);
-                                        update();
-                                        Toast.makeText(context, context.getString(R.string.category_deleted) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                                        if (categoryDbHelper.deleteCategory(category)) {
+                                            update();
+                                            Toast.makeText(context, context.getString(R.string.category_deleted) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(context, context.getString(R.string.operation_not_performed), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 })
                                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
