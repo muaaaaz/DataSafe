@@ -3,6 +3,7 @@ package com.example.datasafe.activities.secretData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.example.datasafe.models.Category;
 
 public class MainSecretDataActivity extends AppCompatActivity {
     Category category;
+    SearchView searchView;
     RecyclerView recyclerView;
     ImageButton addBtn;
     SecretDataAdapter secretDataAdapter;
@@ -41,6 +43,22 @@ public class MainSecretDataActivity extends AppCompatActivity {
             Intent addDataIntent = new Intent(this, AddSecretDataActivity.class);
             addDataIntent.putExtra("CATEGORY", category);
             startActivity(addDataIntent);
+        });
+
+        searchView = findViewById(R.id.searchView_data);
+        searchView.setQueryHint(getString(R.string.search_in) + " \"" + category.getName() + "\"");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                secretDataAdapter.updateSecretData(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                secretDataAdapter.updateSecretData(newText);
+                return true;
+            }
         });
     }
 

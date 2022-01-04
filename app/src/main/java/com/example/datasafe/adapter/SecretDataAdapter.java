@@ -101,6 +101,15 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
         notifyDataSetChanged();
     }
 
+    public void updateSecretData(String text) {
+        if (text.trim().isEmpty()) {
+            this.update();
+            return;
+        }
+        this.secretData = this.secretDataDbHelper.getDataWithTextMatch(category.getUid(), category.getId(), text);
+        notifyDataSetChanged();
+    }
+
     static class SecretDataViewHolder extends RecyclerView.ViewHolder {
         TextView name;
 

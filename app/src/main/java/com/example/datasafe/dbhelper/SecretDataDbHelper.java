@@ -69,6 +69,26 @@ public class SecretDataDbHelper extends DbHelper {
         return data;
     }
 
+    public ArrayList<SecretData> getDataWithTextMatch(int uid, int cid, String text) {
+        ArrayList<SecretData> data = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_DATA + " WHERE UID = ? AND CID = ? AND TITLE LIKE ?", new String[]{String.valueOf(uid), String.valueOf(cid), "%" + text + "%"});
+        if (cursor.moveToFirst()) {
+            do {
+                data.add(new SecretData(
+                        cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getInt(2),
+                        cursor.getString(3),
+                        cursor.getString(4)
+                ));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return data;
+    }
+
     private ContentValues getContentValues(SecretData data) {
         ContentValues cv = new ContentValues();
         cv.put(C2, data.getUid());
