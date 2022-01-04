@@ -36,7 +36,11 @@ public class ViewSecretDataActivity extends AppCompatActivity {
         setDataTextView();
 
         cancelBtn.setOnClickListener(v -> finish());
-        viewHideBtn.setOnClickListener(v -> setDataTextView());
+        viewHideBtn.setOnClickListener(v ->
+        {
+            isTextViewActive = !isTextViewActive;
+            setDataTextView();
+        });
     }
 
     private void setDataTextView() {
@@ -49,7 +53,6 @@ public class ViewSecretDataActivity extends AppCompatActivity {
             dataTextView.setGravity(Gravity.NO_GRAVITY);
             viewHideBtn.setText(R.string.hide);
         }
-        isTextViewActive = !isTextViewActive;
     }
 
     @Override

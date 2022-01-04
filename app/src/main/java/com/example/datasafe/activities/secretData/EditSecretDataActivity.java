@@ -36,7 +36,7 @@ public class EditSecretDataActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(v -> finish());
         addBtn.setOnClickListener(v -> {
             String title = titleText.getText().toString().trim();
-            String data = titleText.getText().toString().trim();
+            String data = dataText.getText().toString().trim();
             secretData.setTitle(title);
             secretData.setData(data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
