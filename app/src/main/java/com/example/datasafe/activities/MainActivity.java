@@ -3,6 +3,7 @@ package com.example.datasafe.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.example.datasafe.models.User;
 
 public class MainActivity extends AppCompatActivity {
     User user;
+    SearchView searchView;
     RecyclerView recyclerView;
     ImageButton addBtn;
     CategoryDbHelper categoryDbHelper;
@@ -44,6 +46,21 @@ public class MainActivity extends AppCompatActivity {
             Intent addCategoryIntent = new Intent(this, AddCategoryActivity.class);
             addCategoryIntent.putExtra("USER", user);
             startActivity(addCategoryIntent);
+        });
+
+        searchView = findViewById(R.id.searchView_main);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                categoryAdapter.updateCategories(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                categoryAdapter.updateCategories(newText);
+                return true;
+            }
         });
     }
 

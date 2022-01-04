@@ -104,6 +104,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         notifyDataSetChanged();
     }
 
+    public void updateCategories(String text) {
+        if (text.trim().isEmpty()) {
+            this.update();
+            return;
+        }
+        this.categories = this.categoryDbHelper.getCategoriesWithTextMatch(userId, text);
+        notifyDataSetChanged();
+    }
+
     static class CategoryViewHolder extends RecyclerView.ViewHolder {
         TextView name;
 

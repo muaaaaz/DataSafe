@@ -49,6 +49,20 @@ public class CategoryDbHelper extends DbHelper {
         return data;
     }
 
+    public ArrayList<Category> getCategoriesWithTextMatch(int userId, String text) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_CATEGORY + " WHERE UID = ? AND NAME LIKE ?", new String[]{String.valueOf(userId), "%" + text + "%"});
+        ArrayList<Category> data = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                data.add(new Category(c.getInt(0), c.getInt(1), c.getString(2)));
+            } while (c.moveToNext());
+        }
+        c.close();
+        db.close();
+        return data;
+    }
+
     public boolean updateCategory(Category category) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
