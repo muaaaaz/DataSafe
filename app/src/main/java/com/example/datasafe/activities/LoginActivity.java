@@ -3,7 +3,6 @@ package com.example.datasafe.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -12,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.UserDbHelper;
+import com.example.datasafe.utilities.Utilities;
 import com.example.datasafe.models.User;
-import com.google.android.material.snackbar.Snackbar;
 
 public class LoginActivity extends AppCompatActivity {
     EditText usernameEditText, passwordEditText;
@@ -32,8 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(v -> {
             if (!validateEntries()) return;
             // hide keyboard if open
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            Utilities.hideVirtualKeyBoard(this, this.getCurrentFocus());
 
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
             UserDbHelper userDbHelper = new UserDbHelper(this);
@@ -44,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(mainIntent);
                 finish();
             } else {
-                Snackbar.make(this.loginBtn, R.string.incorrect_username_or_password, Snackbar.LENGTH_LONG).setBackgroundTint(Color.rgb(255, 0, 0)).show();
+                Utilities.showSnackBar(this.loginBtn, R.string.incorrect_username_or_password, Color.RED);
             }
         });
 

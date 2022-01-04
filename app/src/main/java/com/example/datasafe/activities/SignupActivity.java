@@ -1,5 +1,6 @@
 package com.example.datasafe.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.UserDbHelper;
 import com.example.datasafe.models.User;
+import com.example.datasafe.utilities.Utilities;
 
 public class SignupActivity extends AppCompatActivity {
     EditText usernameEditText, passwordEditText;
@@ -30,8 +32,9 @@ public class SignupActivity extends AppCompatActivity {
 
         signupBtn.setOnClickListener(v -> {
             if (!validateEntries()) return;
+            Utilities.hideVirtualKeyBoard(this, this.getCurrentFocus());
             if (!tosCheckBox.isChecked()) {
-                Toast.makeText(this, R.string.must_agree, Toast.LENGTH_SHORT).show();
+                Utilities.showSnackBar(this.signupBtn, R.string.must_agree, Color.RED);
                 return;
             }
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
