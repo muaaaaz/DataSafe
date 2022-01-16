@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         searchView = findViewById(R.id.searchView_main);
+        searchView.setQueryHint("Search categories");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

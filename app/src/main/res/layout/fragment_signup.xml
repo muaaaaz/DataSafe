@@ -2,18 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".activities.SignupActivity">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/logo"
-        android:src="@drawable/ic_safe" />
+    tools:background="@drawable/bg_1">
 
     <EditText
         android:id="@+id/editText_username"
@@ -39,14 +30,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="@string/i_agree_to_terms_of_services" />
+        android:layout_marginBottom="14dp"
+        android:text="@string/i_agree_to_terms_of_services"
+        android:textColor="@color/white" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_signup"
-        style="@style/Theme.DataSafe.ButtonPrimary"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/signup" />
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_circle_filled"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/signup"
+        android:src="@drawable/ic_person_add_24" />
 
 </LinearLayout>

@@ -7,7 +7,7 @@
     <string name="login">Login</string>
     <string name="i_agree_to_terms_of_services">I agree to Terms of Services.</string>
     <string name="signup">Sign up</string>
-    <string name="create_account">Create Account</string>
+    <string name="signup_underline"><u>Sign up</u></string>
     <string name="min_length_3">Min length is 3.</string>
     <string name="min_length_4">Min length is 4.</string>
     <string name="first_char_must_be_alpha">First char must be alpha.</string>
@@ -15,7 +15,6 @@
     <string name="account_created">Account created.</string>
     <string name="no_space_allowed">No space in text allowed.</string>
     <string name="username_already_taken">Username already taken.</string>
-    <string name="welcome">Welcome</string>
     <string name="incorrect_username_or_password">Incorrect username or password.</string>
     <string name="add_button">Add button</string>
     <string name="category_added">Category added.</string>
@@ -43,4 +42,7 @@
     <string name="go_back">Go Back</string>
     <string name="operation_not_performed">Operation not performed.</string>
     <string name="search_in">Search in</string>
+    <string name="datasafe_dot">dataSAFE.</string>
+    <string name="arrow_up">Arrow up</string>
+    <string name="swipe_up_to_login">Swipe up to login.</string>
 </resources>

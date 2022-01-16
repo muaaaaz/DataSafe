@@ -36,8 +36,9 @@ public class AddCategoryActivity extends AppCompatActivity {
         addBtn.setOnClickListener(v -> {
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
             Category category = new Category(user.getId(), name.getText().toString().trim());
-            categoryDbHelper.addCategory(category);
-            Toast.makeText(this, getString(R.string.category_added) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+            if (categoryDbHelper.addCategory(category)) {
+                Toast.makeText(this, getString(R.string.category_added) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+            }
             finish();
         });
     }

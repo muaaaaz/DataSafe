@@ -12,7 +12,7 @@
     </style>
 
     <style name="Theme.DataSafe.ButtonCancel" parent="Theme.DataSafe.Button">
-        <item name="android:backgroundTint">?colorControlHighlight</item>
+        <item name="android:backgroundTint">#AEAEAE</item>
     </style>
 
     <style name="Theme.DataSafe.TitleTextView" parent="Widget.AppCompat.TextView">
@@ -28,6 +28,11 @@
 
     <style name="Theme.DataSafe.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/bg_round_unfilled_stroked</item>
-        <item name="android:padding">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColorHint">@color/blue_200</item>
     </style>
 </resources>

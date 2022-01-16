@@ -2,61 +2,55 @@ package com.example.datasafe.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.UserDbHelper;
 import com.example.datasafe.models.User;
 import com.example.datasafe.utilities.Utilities;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupFragment extends Fragment {
     EditText usernameEditText, passwordEditText;
     CheckBox tosCheckBox;
-    Button signupBtn;
+    ImageButton signupBtn;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_signup, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-
-        usernameEditText = findViewById(R.id.editText_username);
-        passwordEditText = findViewById(R.id.editText_password);
-        tosCheckBox = findViewById(R.id.checkbox_tos_agree);
-        signupBtn = findViewById(R.id.btn_signup);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        usernameEditText = view.findViewById(R.id.editText_username);
+        passwordEditText = view.findViewById(R.id.editText_password);
+        tosCheckBox = view.findViewById(R.id.checkbox_tos_agree);
+        signupBtn = view.findViewById(R.id.btn_signup);
 
         signupBtn.setOnClickListener(v -> {
             if (!validateEntries()) return;
-            Utilities.hideVirtualKeyBoard(this, this.getCurrentFocus());
+            Utilities.hideVirtualKeyBoard(this.requireActivity(), this.requireActivity().getCurrentFocus());
             if (!tosCheckBox.isChecked()) {
                 Utilities.showSnackBar(this.signupBtn, R.string.must_agree, Color.RED);
                 return;
             }
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
-            UserDbHelper userDbHelper = new UserDbHelper(this);
+            UserDbHelper userDbHelper = new UserDbHelper(this.requireActivity().getApplicationContext());
             if (userDbHelper.addUser(user)) {
-                Toast.makeText(this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(this.getContext(), R.string.account_created, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("USERNAME", usernameEditText.getText().toString());
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState.containsKey("USERNAME"))
-            usernameEditText.setText(savedInstanceState.getString("USERNAME"));
     }
 
     boolean validateEntries() {
@@ -76,7 +70,7 @@ public class SignupActivity extends AppCompatActivity {
             isOk = false;
         }
         if (isOk) {
-            UserDbHelper userDbHelper = new UserDbHelper(this);
+            UserDbHelper userDbHelper = new UserDbHelper(this.requireActivity().getApplicationContext());
             if (userDbHelper.isUsernameTaken(username)) {
                 usernameEditText.setError(getString(R.string.username_already_taken));
                 isOk = false;

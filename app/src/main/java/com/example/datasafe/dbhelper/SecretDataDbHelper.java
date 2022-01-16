@@ -45,10 +45,6 @@ public class SecretDataDbHelper extends DbHelper {
         return db.update(TABLE_DATA, getContentValues(data), "ID = ?", new String[]{String.valueOf(data.getId())}) > 0;
     }
 
-    public ArrayList<SecretData> getData(SecretData data) {
-        return this.getData(data.getUid(), data.getCid());
-    }
-
     public ArrayList<SecretData> getData(int uid, int cid) {
         ArrayList<SecretData> data = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();

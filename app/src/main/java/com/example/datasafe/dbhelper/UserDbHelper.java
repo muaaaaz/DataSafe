@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import com.example.datasafe.models.User;
 
 public class UserDbHelper extends DbHelper {
-    public static final String DATABASE_NAME = "DATASAFE.db";
     public static final String TABLE_USER = "USER";
     public static final String TABLE_USER_C1 = "ID";
     public static final String TABLE_USER_C2 = "USERNAME";
@@ -19,18 +18,6 @@ public class UserDbHelper extends DbHelper {
     public UserDbHelper(@Nullable Context context) {
         super(context);
     }
-
-    /*@Override
-    public void onCreate(SQLiteDatabase db) {
-        String userTableQuery;
-        userTableQuery = String.format("CREATE TABLE %s(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT NOT NULL, %s TEXT NOT NULL)", TABLE_USER, TABLE_USER_C1, TABLE_USER_C2, TABLE_USER_C3);
-        db.execSQL(userTableQuery);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE " + TABLE_USER);
-    }*/
 
     public boolean addUser(User user) {
         SQLiteDatabase db = getWritableDatabase();
@@ -64,8 +51,12 @@ public class UserDbHelper extends DbHelper {
 
     public boolean isUsernameTaken(String username) {
         SQLiteDatabase db = getReadableDatabase();
-        boolean result = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE USERNAME = ?", new String[]{username}).getCount() > 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE USERNAME = ?", new String[]{username});
+        boolean result = false;
+        if (cursor.getCount() > 1)
+            result = true;
         db.close();
+        cursor.close();
         return result;
     }
 }

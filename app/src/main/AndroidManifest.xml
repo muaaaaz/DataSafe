@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataSafe">
         <activity
+            android:name=".activities.LoginSignupActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.secretData.ViewSecretDataActivity"
             android:exported="false" />
         <activity
@@ -29,12 +32,6 @@
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashActivity"

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,8 +25,8 @@ import com.example.datasafe.models.Category;
 import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
-    CategoryDbHelper categoryDbHelper;
-    int userId;
+    final CategoryDbHelper categoryDbHelper;
+    final int userId;
     ArrayList<Category> categories;
 
     public CategoryAdapter(int userId, CategoryDbHelper categoryDbHelper) {
@@ -114,7 +113,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     static class CategoryViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
+        final TextView name;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);

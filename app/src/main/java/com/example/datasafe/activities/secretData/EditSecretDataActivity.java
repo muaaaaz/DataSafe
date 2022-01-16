@@ -40,8 +40,9 @@ public class EditSecretDataActivity extends AppCompatActivity {
             secretData.setTitle(title);
             secretData.setData(data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
-            secretDataDbHelper.updateData(secretData);
-            Toast.makeText(this, getString(R.string.secret_updated) + " (" + secretData.getTitle() + ")", Toast.LENGTH_SHORT).show();
+            if (secretDataDbHelper.updateData(secretData)) {
+                Toast.makeText(this, getString(R.string.secret_updated) + " (" + secretData.getTitle() + ")", Toast.LENGTH_SHORT).show();
+            }
             finish();
         });
     }

@@ -26,8 +26,8 @@ import com.example.datasafe.models.SecretData;
 import java.util.ArrayList;
 
 public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.SecretDataViewHolder> {
-    SecretDataDbHelper secretDataDbHelper;
-    Category category;
+    final SecretDataDbHelper secretDataDbHelper;
+    final Category category;
     ArrayList<SecretData> secretData;
 
     public SecretDataAdapter(Category category, SecretDataDbHelper secretDataDbHelper) {
@@ -76,9 +76,10 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
                                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID);
-                                        update();
-                                        Toast.makeText(context, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")", Toast.LENGTH_SHORT).show();
+                                        if (secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID)) {
+                                            update();
+                                            Toast.makeText(context, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 })
                                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -111,7 +112,7 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
     }
 
     static class SecretDataViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
+        final TextView name;
 
         public SecretDataViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -37,8 +37,9 @@ public class AddSecretDataActivity extends AppCompatActivity {
             String data = dataText.getText().toString().trim();
             SecretData dataToAdd = new SecretData(category.getUid(), category.getId(), title, data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
-            secretDataDbHelper.addData(dataToAdd);
-            Toast.makeText(this, getString(R.string.secret_added) + " (" + dataToAdd.getTitle() + ")", Toast.LENGTH_SHORT).show();
+            if (secretDataDbHelper.addData(dataToAdd)) {
+                Toast.makeText(this, getString(R.string.secret_added) + " (" + dataToAdd.getTitle() + ")", Toast.LENGTH_SHORT).show();
+            }
             finish();
         });
     }
