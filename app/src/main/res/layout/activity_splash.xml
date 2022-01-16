@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_1"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".activities.SplashActivity">
@@ -17,8 +19,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/data_safe"
-        android:textAllCaps="true"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/datasafe_dot"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="32sp" />
 </LinearLayout>

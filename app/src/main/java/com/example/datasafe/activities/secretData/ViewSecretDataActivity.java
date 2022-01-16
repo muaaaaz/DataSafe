@@ -2,7 +2,8 @@ package com.example.datasafe.activities.secretData;
 
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.Button;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,7 @@ import com.example.datasafe.models.SecretData;
 
 public class ViewSecretDataActivity extends AppCompatActivity {
     TextView titleTextView, dataTextView;
-    Button cancelBtn, viewHideBtn;
+    LinearLayout overlay;
     SecretData secretData;
     boolean isTextViewActive = false;
 
@@ -29,14 +30,18 @@ public class ViewSecretDataActivity extends AppCompatActivity {
 
         titleTextView = findViewById(R.id.text_title_view_data);
         dataTextView = findViewById(R.id.text_data_view_data);
-        cancelBtn = findViewById(R.id.btn_cancel_view_data);
-        viewHideBtn = findViewById(R.id.btn_view_hide_view_data);
+        overlay = findViewById(R.id.layout_view_data);
 
         titleTextView.setText(secretData.getTitle());
         setDataTextView();
 
-        cancelBtn.setOnClickListener(v -> finish());
-        viewHideBtn.setOnClickListener(v ->
+        dataTextView.setOnClickListener(v ->
+        {
+            isTextViewActive = !isTextViewActive;
+            setDataTextView();
+        });
+
+        overlay.setOnClickListener(v ->
         {
             isTextViewActive = !isTextViewActive;
             setDataTextView();
@@ -45,13 +50,12 @@ public class ViewSecretDataActivity extends AppCompatActivity {
 
     private void setDataTextView() {
         if (!isTextViewActive) {
-            dataTextView.setText(getString(R.string.click_button_to_view));
-            dataTextView.setGravity(Gravity.CENTER);
-            viewHideBtn.setText(R.string.view);
+            dataTextView.setVisibility(View.INVISIBLE);
+            overlay.setVisibility(View.VISIBLE);
         } else {
+            overlay.setVisibility(View.GONE);
+            dataTextView.setVisibility(View.VISIBLE);
             dataTextView.setText(secretData.getData());
-            dataTextView.setGravity(Gravity.NO_GRAVITY);
-            viewHideBtn.setText(R.string.hide);
         }
     }
 

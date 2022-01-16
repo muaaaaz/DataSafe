@@ -5,11 +5,19 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="7dp"
+        android:src="@drawable/ic_twotone_lock_24" />
+
     <TextView
         android:id="@+id/text_name_list_item_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/roboto_medium"
+        android:gravity="center_vertical"
         android:paddingVertical="4dp"
         android:textSize="18sp"
         tools:text="Text" />

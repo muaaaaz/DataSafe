@@ -49,6 +49,9 @@ public class SignupFragment extends Fragment {
             UserDbHelper userDbHelper = new UserDbHelper(this.requireActivity().getApplicationContext());
             if (userDbHelper.addUser(user)) {
                 Toast.makeText(this.getContext(), R.string.account_created, Toast.LENGTH_SHORT).show();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_view_login_signup, new LoginFragment())
+                        .commitNow();
             }
         });
     }

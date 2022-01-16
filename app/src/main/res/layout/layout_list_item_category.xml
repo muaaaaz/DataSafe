@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="7dp"
+        android:src="@drawable/ic_twotone_category_24" />
 
     <TextView
         android:id="@+id/text_name_list_item_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:paddingVertical="7dp"
         android:textSize="28sp"
         tools:text="Text" />
-</FrameLayout>
+</LinearLayout>
