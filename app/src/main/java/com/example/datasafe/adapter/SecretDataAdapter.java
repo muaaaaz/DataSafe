@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,8 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
             viewIntent.putExtra("SECRET_DATA", data);
             context.startActivity(viewIntent);
         });
+        holder.editBtn.setOnClickListener(v -> editDataClicked(context, data));
+        holder.deleteBtn.setOnClickListener(v -> deleteDataClicked(context, data));
         holder.itemView.setOnLongClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(context, v, Gravity.END);
             popupMenu.inflate(R.menu.menu_category_item);
@@ -67,27 +70,9 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.menuItem_edit_category) {
-                        Intent editIntent = new Intent(context, EditSecretDataActivity.class);
-                        editIntent.putExtra("SECRET_DATA", data);
-                        context.startActivity(editIntent);
+                        editDataClicked(context, data);
                     } else if (item.getItemId() == R.id.menuItem_delete_category) {
-                        new AlertDialog.Builder(context)
-                                .setTitle(context.getString(R.string.delete) + " \"" + data.getTitle() + "\"?")
-                                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        if (secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID)) {
-                                            update();
-                                            Toast.makeText(context, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                })
-                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                    }
-                                }).show();
+                        deleteDataClicked(context, data);
                     }
                     return true;
                 }
@@ -95,6 +80,32 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
             popupMenu.show();
             return true;
         });
+    }
+
+    private void editDataClicked(Context context, SecretData secretData) {
+        Intent editIntent = new Intent(context, EditSecretDataActivity.class);
+        editIntent.putExtra("SECRET_DATA", secretData);
+        context.startActivity(editIntent);
+    }
+
+    private void deleteDataClicked(Context context, SecretData data) {
+        new AlertDialog.Builder(context)
+                .setTitle(context.getString(R.string.delete) + " \"" + data.getTitle() + "\"?")
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID)) {
+                            update();
+                            Toast.makeText(context, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).show();
     }
 
     public void update() {
@@ -113,10 +124,13 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
 
     static class SecretDataViewHolder extends RecyclerView.ViewHolder {
         final TextView name;
+        final ImageButton editBtn, deleteBtn;
 
         public SecretDataViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.text_name_list_item_data);
+            editBtn = itemView.findViewById(R.id.btn_edit_item_data);
+            deleteBtn = itemView.findViewById(R.id.btn_delete_item_data);
         }
     }
 }

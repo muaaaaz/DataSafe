@@ -47,4 +47,6 @@
     <string name="swipe_up_to_login">Swipe up to login.</string>
     <string name="view_hide_button">View Hide Button</string>
     <string name="click_to_view_data">Click to view data.</string>
+    <string name="delete_button">Delete button</string>
+    <string name="edit_button">Edit button</string>
 </resources>

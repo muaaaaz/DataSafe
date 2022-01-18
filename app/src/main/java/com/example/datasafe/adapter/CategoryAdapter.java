@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             mi.putExtra("CATEGORY", category);
             context.startActivity(mi);
         });
+        holder.editBtn.setOnClickListener(v -> {
+            editCategoryClicked(context, category);
+        });
+        holder.deleteBtn.setOnClickListener(v -> {
+            deleteCategoryClicked(context, category);
+        });
         holder.itemView.setOnLongClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(context, v, Gravity.END);
             popupMenu.inflate(R.menu.menu_category_item);
@@ -65,30 +72,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.menuItem_edit_category) {
-                        Intent editIntent = new Intent(context, EditCategoryActivity.class);
-                        editIntent.putExtra("CATEGORY", category);
-                        context.startActivity(editIntent);
+                        editCategoryClicked(context, category);
                     } else if (item.getItemId() == R.id.menuItem_delete_category) {
-                        new AlertDialog.Builder(context)
-                                .setTitle(context.getString(R.string.delete) + " \"" + category.getName() + "\"?")
-                                .setMessage("All related data will be lost.")
-                                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        if (categoryDbHelper.deleteCategory(category)) {
-                                            update();
-                                            Toast.makeText(context, context.getString(R.string.category_deleted) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(context, context.getString(R.string.operation_not_performed), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                })
-                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                    }
-                                }).show();
+                        deleteCategoryClicked(context, category);
                     }
                     return true;
                 }
@@ -96,6 +82,35 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             popupMenu.show();
             return true;
         });
+    }
+
+    private void editCategoryClicked(Context context, Category category) {
+        Intent editIntent = new Intent(context, EditCategoryActivity.class);
+        editIntent.putExtra("CATEGORY", category);
+        context.startActivity(editIntent);
+    }
+
+    private void deleteCategoryClicked(Context context, Category category) {
+        new AlertDialog.Builder(context)
+                .setTitle(context.getString(R.string.delete) + " \"" + category.getName() + "\"?")
+                .setMessage("All related data will be lost.")
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (categoryDbHelper.deleteCategory(category)) {
+                            update();
+                            Toast.makeText(context, context.getString(R.string.category_deleted) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, context.getString(R.string.operation_not_performed), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).show();
     }
 
     public void update() {
@@ -114,10 +129,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     static class CategoryViewHolder extends RecyclerView.ViewHolder {
         final TextView name;
+        final ImageButton deleteBtn, editBtn;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.text_name_list_item_category);
+            editBtn = itemView.findViewById(R.id.btn_edit_item_category);
+            deleteBtn = itemView.findViewById(R.id.btn_delete_item_category);
         }
     }
 }

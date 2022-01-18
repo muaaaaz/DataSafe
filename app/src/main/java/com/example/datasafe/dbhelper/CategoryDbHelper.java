@@ -31,8 +31,8 @@ public class CategoryDbHelper extends DbHelper {
 
     public boolean deleteCategory(Category category) {
         SQLiteDatabase db = getWritableDatabase();
-        return db.delete(TABLE_CATEGORY, "ID = ?", new String[]{String.valueOf(category.getId())}) > 0 &&
-                db.delete(SecretDataDbHelper.TABLE_DATA, String.format("%s = ?", SecretDataDbHelper.TYPE_CID), new String[]{String.valueOf(category.getId())}) > 0;
+        db.delete(SecretDataDbHelper.TABLE_DATA, String.format("%s = ?", SecretDataDbHelper.TYPE_CID), new String[]{String.valueOf(category.getId())});
+        return db.delete(TABLE_CATEGORY, "ID = ?", new String[]{String.valueOf(category.getId())}) > 0;
     }
 
     public ArrayList<Category> getAllCategories(int userId) {
