@@ -97,7 +97,7 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
                     public void onClick(DialogInterface dialog, int which) {
                         if (secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID)) {
                             update();
-                            Utilities.showCustomToast(context, R.drawable.ic_info_24, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")");
+                            Utilities.showCustomToast(context.getApplicationContext(), R.drawable.ic_info_24, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")");
                         }
                     }
                 })

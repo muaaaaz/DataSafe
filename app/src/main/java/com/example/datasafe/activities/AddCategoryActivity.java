@@ -35,10 +35,14 @@ public class AddCategoryActivity extends AppCompatActivity {
 
         cancelBtn.setOnClickListener(v -> finish());
         addBtn.setOnClickListener(v -> {
+            if (Utilities.isTextViewEmpty(name)) {
+                name.setError("Cannot be empty or null.");
+                return;
+            }
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
             Category category = new Category(user.getId(), name.getText().toString().trim());
             if (categoryDbHelper.addCategory(category)) {
-                Utilities.showCustomToast(this, R.drawable.ic_info_24, getString(R.string.category_added) + " (" + category.getName() + ")");
+                Utilities.showCustomToast(this.getApplicationContext(), R.drawable.ic_info_24, getString(R.string.category_added) + " (" + category.getName() + ")");
             }
             finish();
         });

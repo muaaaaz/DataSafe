@@ -4,6 +4,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import androidx.annotation.StringRes;
 
 import com.example.datasafe.R;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.w3c.dom.Text;
 
 public class Utilities {
     public static void hideVirtualKeyBoard(Context context, View currentFocus) {
@@ -43,5 +46,9 @@ public class Utilities {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
         toast.show();
+    }
+
+    public static boolean isTextViewEmpty(TextView textView) {
+        return TextUtils.isEmpty(textView.getText().toString().trim());
     }
 }

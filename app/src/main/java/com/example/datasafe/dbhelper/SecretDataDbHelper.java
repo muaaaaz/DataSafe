@@ -27,7 +27,7 @@ public class SecretDataDbHelper extends DbHelper {
 
     public boolean addData(SecretData data) {
         SQLiteDatabase db = getWritableDatabase();
-        return db.insert(TABLE_DATA, null, getContentValues(data)) == -1;
+        return db.insert(TABLE_DATA, null, getContentValues(data)) != -1;
     }
 
     /**

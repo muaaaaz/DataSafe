@@ -36,13 +36,21 @@ public class EditSecretDataActivity extends AppCompatActivity {
 
         cancelBtn.setOnClickListener(v -> finish());
         addBtn.setOnClickListener(v -> {
+            if (Utilities.isTextViewEmpty(titleText)) {
+                titleText.setError("Cannot be empty or null.");
+                return;
+            }
+            if (Utilities.isTextViewEmpty(dataText)) {
+                dataText.setError("Cannot be empty or null.");
+                return;
+            }
             String title = titleText.getText().toString().trim();
             String data = dataText.getText().toString().trim();
             secretData.setTitle(title);
             secretData.setData(data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
             if (secretDataDbHelper.updateData(secretData)) {
-                Utilities.showCustomToast(this, R.drawable.ic_info_24, getString(R.string.secret_updated) + " (" + secretData.getTitle() + ")");
+                Utilities.showCustomToast(this.getApplicationContext(), R.drawable.ic_info_24, getString(R.string.secret_updated) + " (" + secretData.getTitle() + ")");
             }
             finish();
         });

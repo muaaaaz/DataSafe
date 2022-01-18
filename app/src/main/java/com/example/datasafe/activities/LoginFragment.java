@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment {
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mainIntent);
             } else {
-                Utilities.showCustomToast(this.getContext(), R.drawable.ic_warning_24, R.string.incorrect_username_or_password);
+                Utilities.showCustomToast(this.requireContext().getApplicationContext(), R.drawable.ic_warning_24, R.string.incorrect_username_or_password);
             }
         });
     }

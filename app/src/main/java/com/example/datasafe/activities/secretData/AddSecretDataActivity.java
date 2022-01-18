@@ -34,12 +34,20 @@ public class AddSecretDataActivity extends AppCompatActivity {
 
         cancelBtn.setOnClickListener(v -> finish());
         addBtn.setOnClickListener(v -> {
+            if (Utilities.isTextViewEmpty(titleText)) {
+                titleText.setError("Cannot be empty or null.");
+                return;
+            }
+            if (Utilities.isTextViewEmpty(dataText)) {
+                dataText.setError("Cannot be empty or null.");
+                return;
+            }
             String title = titleText.getText().toString().trim();
             String data = dataText.getText().toString().trim();
             SecretData dataToAdd = new SecretData(category.getUid(), category.getId(), title, data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
             if (secretDataDbHelper.addData(dataToAdd)) {
-                Utilities.showCustomToast(this, R.drawable.ic_info_24, getString(R.string.secret_added) + " (" + dataToAdd.getTitle() + ")");
+                Utilities.showCustomToast(this.getApplicationContext(), R.drawable.ic_info_24, getString(R.string.secret_added) + " (" + dataToAdd.getTitle() + ")");
             }
             finish();
         });

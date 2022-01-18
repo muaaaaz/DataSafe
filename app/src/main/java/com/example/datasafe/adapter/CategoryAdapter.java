@@ -100,9 +100,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                     public void onClick(DialogInterface dialog, int which) {
                         if (categoryDbHelper.deleteCategory(category)) {
                             update();
-                            Utilities.showCustomToast(context, R.drawable.ic_info_24, context.getString(R.string.category_deleted) + " (" + category.getName() + ")");
+                            Utilities.showCustomToast(context.getApplicationContext(), R.drawable.ic_info_24, context.getString(R.string.category_deleted) + " (" + category.getName() + ")");
                         } else {
-                            Utilities.showCustomToast(context, R.drawable.ic_warning_24, context.getString(R.string.operation_not_performed));
+                            Utilities.showCustomToast(context.getApplicationContext(), R.drawable.ic_warning_24, context.getString(R.string.operation_not_performed));
                         }
                     }
                 })
