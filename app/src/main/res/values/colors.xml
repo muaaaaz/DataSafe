@@ -6,4 +6,6 @@
     <color name="purple_300">#9575CD</color>
     <color name="purple_500">#673AB7</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Toast Colors-->
+    <color name="toast_gray">#90676767</color>
 </resources>

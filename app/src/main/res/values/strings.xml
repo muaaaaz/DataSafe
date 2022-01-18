@@ -49,4 +49,5 @@
     <string name="click_to_view_data">Click to view data.</string>
     <string name="delete_button">Delete button</string>
     <string name="edit_button">Edit button</string>
+    <string name="icon">Icon</string>
 </resources>
