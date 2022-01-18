@@ -42,13 +42,13 @@ public class SignupFragment extends Fragment {
             if (!validateEntries()) return;
             Utilities.hideVirtualKeyBoard(this.requireActivity(), this.requireActivity().getCurrentFocus());
             if (!tosCheckBox.isChecked()) {
-                Utilities.showSnackBar(this.signupBtn, R.string.must_agree, Color.RED);
+                Utilities.showCustomToast(this.getContext(), R.drawable.ic_warning_24, R.string.must_agree);
                 return;
             }
             User user = new User(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString());
             UserDbHelper userDbHelper = new UserDbHelper(this.requireActivity().getApplicationContext());
             if (userDbHelper.addUser(user)) {
-                Toast.makeText(this.getContext(), R.string.account_created, Toast.LENGTH_SHORT).show();
+                Utilities.showCustomToast(this.getContext(), R.drawable.ic_info_24, R.string.account_created);
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragment_view_login_signup, new LoginFragment())
                         .commitNow();

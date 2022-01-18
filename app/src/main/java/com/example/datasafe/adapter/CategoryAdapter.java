@@ -22,6 +22,7 @@ import com.example.datasafe.activities.EditCategoryActivity;
 import com.example.datasafe.activities.secretData.MainSecretDataActivity;
 import com.example.datasafe.dbhelper.CategoryDbHelper;
 import com.example.datasafe.models.Category;
+import com.example.datasafe.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -99,9 +100,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                     public void onClick(DialogInterface dialog, int which) {
                         if (categoryDbHelper.deleteCategory(category)) {
                             update();
-                            Toast.makeText(context, context.getString(R.string.category_deleted) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                            Utilities.showCustomToast(context, R.drawable.ic_info_24, context.getString(R.string.category_deleted) + " (" + category.getName() + ")");
                         } else {
-                            Toast.makeText(context, context.getString(R.string.operation_not_performed), Toast.LENGTH_SHORT).show();
+                            Utilities.showCustomToast(context, R.drawable.ic_warning_24, context.getString(R.string.operation_not_performed));
                         }
                     }
                 })

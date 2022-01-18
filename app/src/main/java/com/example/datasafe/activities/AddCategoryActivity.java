@@ -11,6 +11,7 @@ import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.CategoryDbHelper;
 import com.example.datasafe.models.Category;
 import com.example.datasafe.models.User;
+import com.example.datasafe.utilities.Utilities;
 
 public class AddCategoryActivity extends AppCompatActivity {
     User user;
@@ -37,7 +38,7 @@ public class AddCategoryActivity extends AppCompatActivity {
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
             Category category = new Category(user.getId(), name.getText().toString().trim());
             if (categoryDbHelper.addCategory(category)) {
-                Toast.makeText(this, getString(R.string.category_added) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                Utilities.showCustomToast(this, R.drawable.ic_info_24, getString(R.string.category_added) + " (" + category.getName() + ")");
             }
             finish();
         });

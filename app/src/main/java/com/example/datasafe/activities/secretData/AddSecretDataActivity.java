@@ -11,6 +11,7 @@ import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.SecretDataDbHelper;
 import com.example.datasafe.models.Category;
 import com.example.datasafe.models.SecretData;
+import com.example.datasafe.utilities.Utilities;
 
 public class AddSecretDataActivity extends AppCompatActivity {
     EditText titleText, dataText;
@@ -38,7 +39,7 @@ public class AddSecretDataActivity extends AppCompatActivity {
             SecretData dataToAdd = new SecretData(category.getUid(), category.getId(), title, data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
             if (secretDataDbHelper.addData(dataToAdd)) {
-                Toast.makeText(this, getString(R.string.secret_added) + " (" + dataToAdd.getTitle() + ")", Toast.LENGTH_SHORT).show();
+                Utilities.showCustomToast(this, R.drawable.ic_info_24, getString(R.string.secret_added) + " (" + dataToAdd.getTitle() + ")");
             }
             finish();
         });

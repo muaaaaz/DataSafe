@@ -22,14 +22,6 @@ import com.example.datasafe.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class Utilities {
-    public static void showSnackBar(View view, @StringRes int resId, @ColorInt int color) {
-        Snackbar.make(view, resId, Snackbar.LENGTH_LONG).setTextColor(Color.WHITE).setBackgroundTint(color).show();
-    }
-
-    public static void showSnackBar(View view, String text, @ColorInt int color) {
-        Snackbar.make(view, text, Snackbar.LENGTH_LONG).setTextColor(Color.WHITE).setBackgroundTint(color).show();
-    }
-
     public static void hideVirtualKeyBoard(Context context, View currentFocus) {
         // hide keyboard if open
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);

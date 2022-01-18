@@ -49,14 +49,13 @@ public class LoginFragment extends Fragment {
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(mainIntent);
             } else {
-                Utilities.showSnackBar(this.loginBtn, R.string.incorrect_username_or_password, Color.RED);
+                Utilities.showCustomToast(this.getContext(), R.drawable.ic_warning_24, R.string.incorrect_username_or_password);
             }
         });
     }
 
     boolean validateEntries() {
         String username = usernameEditText.getText().toString().trim().toLowerCase();
-        String password = passwordEditText.getText().toString();
         boolean isOk = true;
         if (username.length() < 3) {
             usernameEditText.setError(getString(R.string.min_length_3));
@@ -68,10 +67,6 @@ public class LoginFragment extends Fragment {
         }
         if (username.contains(" ")) {
             usernameEditText.setError(getString(R.string.no_space_allowed));
-            isOk = false;
-        }
-        if (password.length() < 4) {
-            passwordEditText.setError(getString(R.string.min_length_4));
             isOk = false;
         }
         return isOk;

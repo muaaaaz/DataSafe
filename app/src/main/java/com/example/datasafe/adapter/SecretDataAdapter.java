@@ -23,6 +23,7 @@ import com.example.datasafe.activities.secretData.ViewSecretDataActivity;
 import com.example.datasafe.dbhelper.SecretDataDbHelper;
 import com.example.datasafe.models.Category;
 import com.example.datasafe.models.SecretData;
+import com.example.datasafe.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -96,7 +97,7 @@ public class SecretDataAdapter extends RecyclerView.Adapter<SecretDataAdapter.Se
                     public void onClick(DialogInterface dialog, int which) {
                         if (secretDataDbHelper.removeData(data.getId(), SecretDataDbHelper.TYPE_ID)) {
                             update();
-                            Toast.makeText(context, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")", Toast.LENGTH_SHORT).show();
+                            Utilities.showCustomToast(context, R.drawable.ic_info_24, context.getString(R.string.secret_deleted) + " (" + data.getTitle() + ")");
                         }
                     }
                 })

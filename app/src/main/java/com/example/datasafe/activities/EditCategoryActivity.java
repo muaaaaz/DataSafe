@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.CategoryDbHelper;
 import com.example.datasafe.models.Category;
+import com.example.datasafe.utilities.Utilities;
 
 public class EditCategoryActivity extends AppCompatActivity {
     Category category;
@@ -38,7 +39,7 @@ public class EditCategoryActivity extends AppCompatActivity {
             CategoryDbHelper categoryDbHelper = new CategoryDbHelper(this);
             category.setName(name.getText().toString().trim());
             if (categoryDbHelper.updateCategory(category)) {
-                Toast.makeText(this, getString(R.string.category_updated) + " (" + category.getName() + ")", Toast.LENGTH_SHORT).show();
+                Utilities.showCustomToast(this,R.drawable.ic_info_24, getString(R.string.category_updated) + " (" + category.getName() + ")");
             }
             finish();
         });

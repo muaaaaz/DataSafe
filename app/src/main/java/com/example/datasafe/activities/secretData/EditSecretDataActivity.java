@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.datasafe.R;
 import com.example.datasafe.dbhelper.SecretDataDbHelper;
 import com.example.datasafe.models.SecretData;
+import com.example.datasafe.utilities.Utilities;
 
 public class EditSecretDataActivity extends AppCompatActivity {
     SecretData secretData;
@@ -41,7 +42,7 @@ public class EditSecretDataActivity extends AppCompatActivity {
             secretData.setData(data);
             SecretDataDbHelper secretDataDbHelper = new SecretDataDbHelper(this);
             if (secretDataDbHelper.updateData(secretData)) {
-                Toast.makeText(this, getString(R.string.secret_updated) + " (" + secretData.getTitle() + ")", Toast.LENGTH_SHORT).show();
+                Utilities.showCustomToast(this, R.drawable.ic_info_24, getString(R.string.secret_updated) + " (" + secretData.getTitle() + ")");
             }
             finish();
         });
